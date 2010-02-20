@@ -1,0 +1,173 @@
+body {
+  background-color: #ccdddd;
+  color: #000;
+  margin: 8px;
+}
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 16px;
+}
+
+h1 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a, a:active, a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  vertical-align: text-top;
+}
+
+#add-toggle section img {
+  border: 1px solid #000;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  font-size: 10px;
+  text-align: center;
+}
+
+#flash {
+  background: #36d036;
+  border: 1px solid #000;
+  color: #fff;
+  display: none;
+  left: 0;
+  -moz-border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 3px #aac4c4;
+  padding: 15px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 3px #aac4c4;
+  z-index: 10;
+}
+
+#flash.error {
+  background: #9f2531;
+}
+
+.errors {
+  background: #9f2531;
+  border: 1px solid #000;
+  color: #fff;
+  margin-bottom: 15px;
+  padding: 4px;
+}
+
+.errors ul {
+  padding-left: 25px;
+}
+
+#legend {
+  margin-bottom: 16px;
+}
+
+.legend {
+  background: #9eaeb3;
+  border: 1px solid #000;
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+}
+
+.legend.unmerged {
+  background: #4682b4;
+}
+
+header {
+  margin: 16px 0;
+  font-weight: bold;
+}
+
+header section {
+  float: left;
+}
+
+header section:first-child {
+  margin-left: 97px;
+}
+
+section article {
+  background: #9eaeb3;
+  border-color: #9eaeb3;
+  border-style: solid;
+  border-top-width: 4px;
+  border-bottom-width: 4px;
+  border-left-width: 12px;
+  border-right-width: 12px;
+  margin-bottom: 15px;
+  -moz-border-radius: 5px;
+  -moz-box-shadow: 3px 3px 3px #aac4c4;
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 3px #aac4c4;
+}
+
+section article.unmerged {
+  background-color: #4682b4;
+  border-color: #4682b4;
+  color: #fff;
+}
+
+section article.unmerged a {
+  color: #fff;
+}
+
+section article section {
+  float: left;
+}
+
+section article section img {
+  vertical-align: middle;
+}
+
+section.actions, section.revision, section.ticket {
+  width: 85px;
+}
+
+section.revision input, section.ticket input {
+  width: 60px;
+}
+
+section.description {
+  padding-right: 25px;
+}
+
+section.description, section.notes {
+  width: 600px;
+}
+
+section.description input, section.notes input {
+  width: 575px;
+}
+
+section.pagination {
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+section.pagination a {
+  color: #4682b4;
+  text-decoration: underline;
+}
