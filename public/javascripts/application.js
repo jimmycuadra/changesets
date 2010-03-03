@@ -227,6 +227,12 @@ Changesets.prototype.attachBindings = function() {
     
     $(this).trigger('save-new');
   })
+  
+  $('form').live('keypress', function(e) {
+    if (e.keyCode == 13) {
+      return false;
+    }
+  });
 }
 
 // on dom ready
