@@ -2,10 +2,19 @@ class ChangesetsController < ApplicationController
   # GET /changesets
   # GET /changesets.xml
   def index
-    @changesets = Changeset.paginate(:page => params[:page], :order => 'revision DESC')
+    @changesets = Changeset.unmerged.paginate(:page => params[:page], :order => 'revision DESC')
 
     respond_to do |format|
       format.html # index.html.erb
+      format.xml  { render :xml => @changesets }
+    end
+  end
+
+  def all
+    @changesets = Changeset.paginate(:page => params[:page], :order => 'revision DESC')
+
+    respond_to do |format|
+      format.html { render :index }
       format.xml  { render :xml => @changesets }
     end
   end
