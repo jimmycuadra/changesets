@@ -55,8 +55,8 @@
         <%= link_to tag('img', { :src => '/images/x_icon.gif', :title => 'Delete ' + cs.revision.to_s }), '#', :class => 'delete' %>
         <%= link_to tag('img', { :src => '/images/switch_icon.gif', :title => titleText + 'erge ' + cs.revision.to_s }), '#', :class => 'merge' %>
       </section>
-      <section class="revision"><%= cs.revision.to_s %> <%= link_to '&rarr;',  changeset_link(cs.revision.to_s) %></section>
-      <section class="ticket"><%= cs.ticket ? cs.ticket.to_s : '&nbsp;' %> <%= link_to '&rarr;', ticket_link(cs.ticket.to_s) unless cs.ticket.blank? %></section>
+      <section class="revision"><%= cs.revision.to_s %> <%= link_to '&rarr;',  changeset_link(cs.revision.to_s), :target => '_blank' %></section>
+      <section class="ticket"><%= cs.ticket ? cs.ticket.to_s : '&nbsp;' %> <%= link_to '&rarr;', ticket_link(cs.ticket.to_s), :target => '_blank' unless cs.ticket.blank? %></section>
       <section class="description"><%= cs.description %></section>
       <section class="notes"><%= cs.notes %></section>
     </article>
