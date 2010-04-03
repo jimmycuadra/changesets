@@ -5,6 +5,7 @@ class ChangesetsController < ApplicationController
 
   def all
     @changesets = Changeset.paginate(:page => params[:page], :order => 'revision DESC')
+    render :index
   end
 
   def new
