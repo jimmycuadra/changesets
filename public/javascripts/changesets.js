@@ -3,6 +3,7 @@ that = '';
 // set up
 CS.Changesets = function(options) {
   that = this;
+  this.flash = options.flash;
   this.saveDefaults();
   this.setupBindings();
   this.attachBindings();
@@ -126,10 +127,10 @@ CS.Changesets.prototype.handleSaveNew = function($thisRow, $loading, data) {
       $('div.errors').remove();
       $thisRow.find('input').val('');
       that.saveDefaults($newArticle.find('input'));
-      that.flash('The changeset was created.');
+      that.flash.update('The changeset was created.');
       $('#cs-new').trigger('toggle-new');
     } else {
-      that.flash('The changeset could not be created.', true);
+      that.flash.update('The changeset could not be created.', true);
     }
     
     $loading.toggleClass('hidden');
@@ -141,7 +142,7 @@ CS.Changesets.prototype.handleSave = function($thisRow, $thatRow, $loading, data
     if (xhr.status == 422) {
       $thisRow.after($(xhr.responseText));
       $loading.toggleClass('hidden');
-      that.flash('The changeset could not be updated.', true);
+      that.flash.update('The changeset could not be updated.', true);
     } else {
       $thatRow.remove();
       // workaround until http://dev.jquery.com/ticket/5316 is fixed
@@ -150,7 +151,7 @@ CS.Changesets.prototype.handleSave = function($thisRow, $thatRow, $loading, data
       var $updatedArticle = $xhrRT.wrap('<div/>').parent().replaceAll($thisRow).replaceWith($xhrRT);
       // re-save default values for all inputs since the above workaround returns the wrong object
       that.saveDefaults();
-      that.flash('The changeset was updated.');
+      that.flash.update('The changeset was updated.');
     }
   }
 }
@@ -179,27 +180,6 @@ CS.Changesets.prototype.handleToggle = function(e, isCancel) {
 CS.Changesets.prototype.getRecordID = function($t) {
   var csID = $t.closest('article').attr('id');
   return csID.substring(csID.lastIndexOf('-') + 1);
-}
-
-CS.Changesets.prototype.flash = function(message, isError) {
-  var $flash = $('#flash').text(message),
-      flashWidth = $flash.width(),
-      $window = $(window),
-      winWidth = $window.width(),
-      scrollTop = $window.scrollTop();
-  
-  if (isError) {
-    $flash.addClass('error');
-  } else {
-    $flash.removeClass('error');
-  }
-    
-  $flash.css({
-    'top': scrollTop + 15,
-    'left': (winWidth - flashWidth) / 2
-  }).show().animate({
-    'void': 0
-  }, 1500).fadeOut(1500);
 }
 
 // attach custom events to controls

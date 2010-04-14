@@ -1,5 +1,8 @@
 $(function() {
   CS.ajaxSetup();
   
-  var cs = new CS.Changesets();
+  var flash = new CS.Flash('#flash'),
+    cs = new CS.Changesets({
+      flash: flash
+    });
 });
