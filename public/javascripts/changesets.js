@@ -145,11 +145,8 @@ CS.Changesets.prototype.handleSave = function($thisRow, $thatRow, $loading, data
       that.flash.update('The changeset could not be updated.', true);
     } else {
       $thatRow.remove();
-      // workaround until http://dev.jquery.com/ticket/5316 is fixed
-      // var $updatedArticle = $(xhr.responseText).replaceAll($thisRow);
       var $xhrRT = $(xhr.responseText);
-      var $updatedArticle = $xhrRT.wrap('<div/>').parent().replaceAll($thisRow).replaceWith($xhrRT);
-      // re-save default values for all inputs since the above workaround returns the wrong object
+      $thisRow.replaceWith($xhrRT);
       that.saveDefaults();
       that.flash.update('The changeset was updated.');
     }
