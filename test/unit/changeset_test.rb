@@ -18,6 +18,12 @@ class ChangesetTest < ActiveSupport::TestCase
     should validate_uniqueness_of(:revision)
     should allow_value(true).for(:merged)
     should allow_value(false).for(:merged)
-    # figure out how to test name scopes in newest shoulda!
+  end
+
+  should 'look up only unmerged changesets' do
+    merged = Factory(:changeset, :revision => 1, :merged => true)
+    unmerged = Factory(:changeset, :revision => 2, :merged => false)
+
+    assert_equal [unmerged], Changeset.unmerged
   end
 end
