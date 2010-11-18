@@ -1,4 +1,4 @@
-<% if @changeset.valid? -%>
+<% if @changeset.valid? %>
 <article class="clearfix<%= ' unmerged' unless @changeset.merged %>" id="cs-<%= @changeset.id.to_s %>" data-rev="<%= @changeset.revision.to_s %>">
   <section class="actions">
     <%= link_to tag('img', { :src => '/images/pencil_icon.gif', :title => 'Edit ' + @changeset.revision.to_s }), '#', :class => 'edit' %>
@@ -25,14 +25,14 @@
     <section class="notes"><input type="text" name="changeset[notes]" value="<%= @changeset.notes %>" /></section>
   </form>
 </article>
-<% else -%>
+<% else %>
 <div class="errors">
   <p>The changeset could not be saved because:</p>
   
   <ul>
-    <% @changeset.errors.each do |cs| -%>
+    <% @changeset.errors.each do |cs| %>
       <li><%= cs[0] + ' ' + cs[1] %></li>
-    <% end -%>
+    <% end %>
   </ul>
 </div>
-<% end -%>
+<% end %>
