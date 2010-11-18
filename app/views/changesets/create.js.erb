@@ -5,8 +5,8 @@
     <%= link_to tag('img', { :src => '/images/x_icon.gif', :title => 'Delete ' + @changeset.revision.to_s }), '#', :class => 'delete' %>
     <%= link_to tag('img', { :src => '/images/switch_icon.gif', :title => 'Merge ' + @changeset.revision.to_s }), '#', :class => 'merge' %>
   </section>
-  <section class="revision"><%= @changeset.revision.to_s %> <%= link_to '&rarr;', changeset_link(@changeset.revision.to_s), :target => '_blank' %></section>
-  <section class="ticket"><%= @changeset.ticket ? @changeset.ticket.to_s : '&nbsp;' %> <%= link_to '&rarr;', ticket_link(@changeset.ticket.to_s), :target => '_blank' unless @changeset.ticket.blank? %></section>
+  <section class="revision"><%= @changeset.revision.to_s %> <%= link_to '&rarr;'.html_safe, changeset_link(@changeset.revision.to_s), :target => '_blank' %></section>
+  <section class="ticket"><%= @changeset.ticket ? @changeset.ticket.to_s : '&nbsp;'.html_safe %> <%= link_to '&rarr;'.html_safe, ticket_link(@changeset.ticket.to_s), :target => '_blank' unless @changeset.ticket.blank? %></section>
   <section class="description"><%= @changeset.description %></section>
   <section class="notes"><%= @changeset.notes %></section>
 </article>
@@ -30,8 +30,8 @@
   <p>The changeset could not be saved because:</p>
   
   <ul>
-    <% @changeset.errors.each do |cs| %>
-      <li><%= cs[0] + ' ' + cs[1] %></li>
+    <% @changeset.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
     <% end %>
   </ul>
 </div>
