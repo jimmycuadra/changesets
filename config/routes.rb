@@ -1,4 +1,7 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :changesets, :except => 'show', :collection => { :all => :get }
-  map.root :controller => 'changesets'
+ChangesetsDev::Application.routes.draw do
+  resources :changesets, :except => 'show' do
+    get 'all', :on => :collection
+  end
+  
+  root :to => 'changesets#index'
 end
