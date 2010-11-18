@@ -8,12 +8,16 @@ class ChangesetTest < ActiveSupport::TestCase
 
     subject { @changeset }
 
-    should_validate_numericality_of :revision, :ticket
-    should_not_allow_values_for :revision, 0, 1.1
-    should_not_allow_values_for :ticket, 0, 1.1
-    should_validate_presence_of :revision
-    should_validate_uniqueness_of :revision
-    should_allow_values_for :merged, true, false
-    should_have_named_scope :unmerged, :conditions => { :merged => false }
+    should validate_numericality_of(:revision)
+    should validate_numericality_of(:ticket)
+    should_not allow_value(0).for(:revision)
+    should_not allow_value(1.1).for(:revision)
+    should_not allow_value(0).for(:ticket)
+    should_not allow_value(1.1).for(:ticket)
+    should validate_presence_of(:revision)
+    should validate_uniqueness_of(:revision)
+    should allow_value(true).for(:merged)
+    should allow_value(false).for(:merged)
+    # figure out how to test name scopes in newest shoulda!
   end
 end
