@@ -48,33 +48,7 @@
   </article>
   
   <% @changesets.each do |cs| %>
-    <% titleText = cs.merged ? 'Unm' : 'M' %>
-    <article class="clearfix<%= ' unmerged' unless cs.merged %>" id="cs-<%= cs.id.to_s %>" data-rev="<%= cs.revision.to_s %>">
-      <section class="actions">
-        <%= link_to tag('img', { :src => '/images/pencil_icon.gif', :title => 'Edit ' + cs.revision.to_s }), '#', :class => 'edit' %>
-        <%= link_to tag('img', { :src => '/images/x_icon.gif', :title => 'Delete ' + cs.revision.to_s }), '#', :class => 'delete' %>
-        <%= link_to tag('img', { :src => '/images/switch_icon.gif', :title => titleText + 'erge ' + cs.revision.to_s }), '#', :class => 'merge' %>
-      </section>
-      <section class="revision"><%= cs.revision.to_s %> <%= link_to '&rarr;'.html_safe,  changeset_link(cs.revision.to_s), :target => '_blank' %></section>
-      <section class="ticket"><%= cs.ticket ? cs.ticket.to_s : '&nbsp;'.html_safe %> <%= link_to '&rarr;'.html_safe, ticket_link(cs.ticket.to_s), :target => '_blank' unless cs.ticket.blank? %></section>
-      <section class="description"><%= cs.description %></section>
-      <section class="notes"><%= cs.notes %></section>
-    </article>
-
-    <article class="hidden clearfix<%= ' unmerged' unless cs.merged %>" id="cs-edit-<%= cs.id.to_s %>">
-      <form>
-        <section class="actions">
-          <a href="#" data-id="<%= cs.id.to_s %>" class="save"><img src="/images/disk_icon.gif" width="16" height="16" alt="Save" title="Save <%= cs.revision.to_s %>"></a>
-          <a href="#" class="cancel"><img src="/images/cancel_icon.gif" width="16" height="16" alt="Cancel" title="Cancel changes" /></a>
-          <img src="/images/ajax_loader.gif" width="16" height="11" alt="Loading" class="loading hidden" />
-          <input type="hidden" name="_method" value="put" />
-        </section>
-        <section class="revision"><input type="text" name="changeset[revision]" value="<%= cs.revision.to_s %>" /></section>
-        <section class="ticket"><input type="text" name="changeset[ticket]" value="<%= cs.ticket.to_s %>" /></section>
-        <section class="description"><input type="text" name="changeset[description]" value="<%= cs.description %>" /></section>
-        <section class="notes"><input type="text" name="changeset[notes]" value="<%= cs.notes %>" /></section>
-      </form>
-    </article>
+    <%= render cs %>
   <% end %>
 </section>
 
