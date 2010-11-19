@@ -1,5 +1,5 @@
 ChangesetsDev::Application.routes.draw do
-  resources :changesets, :except => 'show' do
+  resources :changesets, :only => [:index, :create, :update, :destroy] do
     get 'all', :on => :collection
   end
   

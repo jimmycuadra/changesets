@@ -8,14 +8,6 @@ class ChangesetsController < ApplicationController
     render :index
   end
 
-  def new
-    @changeset = Changeset.new
-  end
-
-  def edit
-    @changeset = Changeset.find(params[:id])
-  end
-
   def create
     @changeset = Changeset.new(params[:changeset])
 
