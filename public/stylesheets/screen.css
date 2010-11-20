@@ -137,6 +137,13 @@ nav {
 }
 
 
+/* pagination */
+
+#pagination {
+  text-align: center;
+}
+
+
 /* footer */
 
 footer {

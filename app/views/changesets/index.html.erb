@@ -6,7 +6,7 @@
   <a href="/changesets/all" class="awesome">View All</a>
 </nav>
 
-<div id="current-wrapper">
+<div id="current-wrapper" class="hidden">
   <section id="current">
     <p><em>Create a new changeset</em></p>
 
@@ -54,6 +54,10 @@
     <%= render @changesets %>
   </tbody>
 </table>
+
+<section id="pagination">
+  <%= will_paginate @changesets %>
+</section>
 
 <footer>
   <small>Changesets &copy; 2010 Jimmy Cuadra. All rights reserved.</small>
