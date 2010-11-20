@@ -51,39 +51,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td class="action">
-        <button class="awesome">Edit</button>
-        <button class="awesome red">Delete</button>
-        <button class="awesome blue">Unmerge</button>
-      </td>
-      <td class="revision">3<a href="#">[Trac]</a></td>
-      <td class="ticket">3<a href="#">[Trac]</a></td>
-      <td class="description">commit message</td>
-      <td class="notes">my notes</td>
-    </tr>
-    <tr class="unmerged">
-      <td class="action">
-        <button class="awesome">Edit</button>
-        <button class="awesome red">Delete</button>
-        <button class="awesome gray">Merge</button>
-      </td>
-      <td class="revision">2<a href="#">[Trac]</a></td>
-      <td class="ticket">2<a href="#">[Trac]</a></td>
-      <td class="description">commit message</td>
-      <td class="notes">my notes</td>
-    </tr>
-    <tr>
-      <td class="action">
-        <button class="awesome">Edit</button>
-        <button class="awesome red">Delete</button>
-        <button class="awesome blue">Unmerge</button>
-      </td>
-      <td class="revision">1<a href="#">[Trac]</a></td>
-      <td class="ticket">1<a href="#">[Trac]</a></td>
-      <td class="description">commit message</td>
-      <td class="notes">my notes</td>
-    </tr>
+    <%= render @changesets %>
   </tbody>
 </table>
 
