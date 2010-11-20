@@ -3,7 +3,9 @@
 <head>
   <meta charset=utf-8 />
   <title>Changesets</title>
-  <%= stylesheet_link_tag 'reset', 'awesome-buttons', 'screen' %>
+  <%= stylesheet_link_tag 'reset', 'awesome-buttons', 'screen', :cache => 'changesets' %>
+  <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js' %>
+  <%= javascript_include_tag 'core', 'interface', 'application', :cache => 'changesets' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
