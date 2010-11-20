@@ -3,13 +3,10 @@
 <head>
   <meta charset=utf-8 />
   <title>Changesets</title>
-  <%= stylesheet_link_tag 'reset', 'screen' %>
-  <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.7.2.custom.min', 'core', 'flash', 'changesets', 'application' %>
+  <%= stylesheet_link_tag 'reset', 'awesome-buttons', 'screen' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
-
-<p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield %>
 

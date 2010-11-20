@@ -1,177 +1,149 @@
+/* general */
+
 body {
-  background-color: #ccdddd;
-  color: #000;
-  margin: 8px;
-}
-
-body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
-  line-height: 16px;
-}
-
-p {
-  margin-bottom: 16px;
+  color: #444;
+  background: #cdd;
+  font-size: 16px;
+  margin: 10px;
 }
 
 h1 {
-  font-size: 20px;
-  margin-bottom: 16px;
+  font-size: 24px;
+  letter-spacing: 12px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
+a, a:active, a:hover, a:visited {
+  color: #444;
 }
 
-a, a:active, a:visited {
-  color: #000;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-img {
-  vertical-align: text-top;
-}
-
-#add-toggle section img {
-  border: 1px solid #000;
+p {
+  margin-bottom: 10px;
 }
 
 .hidden {
   display: none;
 }
 
-footer {
-  font-size: 10px;
+nav {
+  margin: 20px 0;
   text-align: center;
 }
 
-#flash {
-  background: #36d036;
-  border: 1px solid #000;
-  color: #fff;
-  display: none;
-  left: 0;
-  -moz-border-radius: 5px;
-  -webkit-box-shadow: 3px 3px 3px #aac4c4;
-  padding: 15px;
-  position: absolute;
+
+/* awesome button colors */
+
+.awesome.red {
+  background-color: #e11 !important;
+}
+
+.awesome.green {
+  background-color: #3acc00 !important;
+}
+
+.awesome.blue {
+  background-color: #4682b4 !important;
+}
+
+.awesome.gray {
+  background-color: #666 !important;
+}
+
+
+/* current */
+
+#current-wrapper {
   text-align: center;
-  top: 0;
-  -webkit-border-radius: 5px;
-  -webkit-box-shadow: 3px 3px 3px #aac4c4;
-  z-index: 10;
 }
 
-#flash.error {
-  background: #9f2531;
-}
-
-.errors {
-  background: #9f2531;
-  border: 1px solid #000;
-  color: #fff;
-  margin-bottom: 15px;
-  padding: 4px;
-}
-
-.errors ul {
-  padding-left: 25px;
-}
-
-#legend {
-  margin-bottom: 16px;
-}
-
-.legend {
-  background: #9eaeb3;
-  border: 1px solid #000;
+#current {
+  background-color: #eee;
+  border: 2px solid #333;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
   display: inline-block;
-  height: 12px;
-  width: 12px;
+  margin-bottom: 20px;
+  padding: 15px;
 }
 
-.legend.unmerged {
-  background: #4682b4;
+#current th {
+  padding-right: 10px;
+  text-align: right;
 }
 
-header {
-  margin: 16px 0;
-  font-weight: bold;
+#current input {
+  width: 500px;
 }
 
-header section {
-  float: left;
+#current .buttons {
+  margin: 10px 0 0;
 }
 
-header section:first-child {
-  margin-left: 97px;
+
+/* list */
+
+#changesets {
+  border: 1px solid #333;
+  width: 100%;
 }
 
-section article {
-  background: #9eaeb3;
-  border-color: #9eaeb3;
-  border-style: solid;
-  border-top-width: 4px;
-  border-bottom-width: 4px;
-  border-left-width: 12px;
-  border-right-width: 12px;
-  margin-bottom: 15px;
-  -moz-border-radius: 5px;
-  -moz-box-shadow: 3px 3px 3px #aac4c4;
-  -webkit-border-radius: 5px;
-  -webkit-box-shadow: 3px 3px 3px #aac4c4;
-}
-
-section article.unmerged {
-  background-color: #4682b4;
-  border-color: #4682b4;
-  color: #fff;
-}
-
-section article.unmerged a {
-  color: #fff;
-}
-
-section article section {
-  float: left;
-}
-
-section article section img {
+#changesets th,
+#changesets td {
+  border: 1px solid #333;
+  padding: 5px;
+  text-align: left;
   vertical-align: middle;
 }
 
-section.actions, section.revision, section.ticket {
+#changesets th {
+  background-color: #333;
+  color: #eee;
+}
+
+#changesets td {
+  background-color: #eee;
+  color: #000;
+}
+
+#changesets .unmerged td {
+  background-color: #4682b4;
+  color: #eee;
+}
+
+#changesets .action {
+  text-align: center;
+  white-space: nowrap;
+  width: 1%;
+}
+
+#changesets .revision,
+#changesets .ticket {
+  width: 10%;
+}
+
+#changesets .awesome {
   width: 85px;
 }
 
-section.revision input, section.ticket input {
-  width: 60px;
+#changesets a {
+  float: right;
 }
 
-section.description {
-  padding-right: 25px;
+#changesets .unmerged a {
+  color: #eee;
 }
 
-section.description, section.notes {
-  width: 600px;
-}
 
-section.description input, section.notes input {
-  width: 575px;
-}
+/* footer */
 
-section.pagination {
-  margin-bottom: 18px;
+footer {
+  margin: 20px 0;
   text-align: center;
 }
 
-section.pagination a {
-  color: #4682b4;
-  text-decoration: underline;
+small {
+  font-size: 12px;
 }

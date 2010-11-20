@@ -1,61 +1,92 @@
-<h1><a href="/">Changesets</a></h1>
+<h1>Changesets</h1>
 
-<p>
-  <%= link_to 'View all changesets', all_changesets_path %>
-</p>
+<nav>
+  <button class="awesome">New Changeset</button>
+  <a href="/" class="awesome">View Unmerged</a>
+  <a href="/changesets/all" class="awesome">View All</a>
+</nav>
 
-<section id="flash"></section>
+<div id="current-wrapper">
+  <section id="current">
+    <p><em>Create a new changeset</em></p>
 
-<section id="legend">
-  <div class="legend merged"></div> is merged, <div class="legend unmerged"></div> is unmerged
-</section>
-
-<section id="add-toggle">
-  <section>
-    <a href="#" class="add"><img src="/images/plus_icon.png" width="16" height="16" alt="Add" title="Add a new changeset" /></a>
-    <a href="#" class="add">Add a new changeset</a>
-  </section>
-  <section class="hidden">
-    <a href="#" class="add"><img src="/images/minus_icon.png" width="16" height="16" alt="Cancel" title="Cancel new changeset" /></a>
-    <a href="#" class="add">Cancel new changeset</a>
-  </section>
-</section>
-
-<section class="pagination">
-  <%= will_paginate @changesets %>
-</section>
-
-<header class="clearfix">
-  <section class="revision">Revision</section>
-  <section class="ticket">Ticket</section>
-  <section class="description">Description</section>
-  <section class="notes">Notes</section>
-</header>
-
-<section id="changesets">
-  <article class="new hidden clearfix" id="cs-new">
     <form>
-      <section class="actions">
-        <a href="#" class="save-new"><img src="/images/disk_icon.gif" width="16" height="16" alt="Save" title="Save new changeset"></a>
-        <a href="#" class="toggle-new"><img src="/images/cancel_icon.gif" width="16" height="16" alt="Cancel" title="Cancel new changeset" /></a>
-        <img src="/images/ajax_loader.gif" width="16" height="11" alt="Loading" class="loading hidden" />
-      </section>
-      <section class="revision"><input type="text" name="changeset[revision]" /></section>
-      <section class="ticket"><input type="text" name="changeset[ticket]" /></section>
-      <section class="description"><input type="text" name="changeset[description]" /></section>
-      <section class="notes"><input type="text" name="changeset[notes]" /></section>
+      <table>
+        <tbody>
+          <tr>
+            <th><label for="inp-revision">Revision</label></th>
+            <td><input type="text" name="changeset[revision]" id="inp-revision"></td>
+          </tr>
+          <tr>
+            <th><label for="inp-ticket">Ticket</label></th>
+            <td><input type="text" name="changeset[ticket]" id="inp-ticket"></td>
+          </tr>
+          <tr>
+            <th><label for="inp-description">Description</label></th>
+            <td><input type="text" name="changeset[description]" id="inp-description"></td>
+          </tr>
+          <tr>
+            <th><label for="inp-notes">Notes</label></th>
+            <td><input type="text" name="changeset[notes]" id="inp-notes"></td>
+          </tr>
+        </tbody>
+      </table>
     </form>
-  </article>
-  
-  <% @changesets.each do |cs| %>
-    <%= render cs %>
-  <% end %>
-</section>
 
-<section class="pagination">
-  <%= will_paginate @changesets %>
-</section>
+    <section class="buttons">
+      <button class="awesome editing green">Save</button>
+      <button class="awesome editing red">Cancel</button>
+    </section>
+  </section>
+</div>
+
+<table id="changesets">
+  <thead>
+    <tr>
+      <th class="action">&nbsp;</th>
+      <th class="revision">Revision</th>
+      <th class="ticket">Ticket</th>
+      <th class="description">Description</th>
+      <th class="notes">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="action">
+        <button class="awesome">Edit</button>
+        <button class="awesome red">Delete</button>
+        <button class="awesome blue">Unmerge</button>
+      </td>
+      <td class="revision">3<a href="#">[Trac]</a></td>
+      <td class="ticket">3<a href="#">[Trac]</a></td>
+      <td class="description">commit message</td>
+      <td class="notes">my notes</td>
+    </tr>
+    <tr class="unmerged">
+      <td class="action">
+        <button class="awesome">Edit</button>
+        <button class="awesome red">Delete</button>
+        <button class="awesome gray">Merge</button>
+      </td>
+      <td class="revision">2<a href="#">[Trac]</a></td>
+      <td class="ticket">2<a href="#">[Trac]</a></td>
+      <td class="description">commit message</td>
+      <td class="notes">my notes</td>
+    </tr>
+    <tr>
+      <td class="action">
+        <button class="awesome">Edit</button>
+        <button class="awesome red">Delete</button>
+        <button class="awesome blue">Unmerge</button>
+      </td>
+      <td class="revision">1<a href="#">[Trac]</a></td>
+      <td class="ticket">1<a href="#">[Trac]</a></td>
+      <td class="description">commit message</td>
+      <td class="notes">my notes</td>
+    </tr>
+  </tbody>
+</table>
 
 <footer>
-  Changesets &copy; <%= Time.now.year %> Jimmy Cuadra. All rights reserved.
+  <small>Changesets &copy; 2010 Jimmy Cuadra. All rights reserved.</small>
 </footer>
