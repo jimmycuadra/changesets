@@ -47,8 +47,15 @@ nav {
   background-color: #4682b4 !important;
 }
 
-.awesome.gray {
+.awesome.white {
+  background-color: #fff !important;
+  color: #4682b4 !important;
+  text-shadow: none !important;
+}
+
+.awesome[disabled] {
   background-color: #666 !important;
+  cursor: default !important;
 }
 
 
