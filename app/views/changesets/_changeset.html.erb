@@ -1,11 +1,11 @@
-<tr<%= ' class="unmerged"'.html_safe unless changeset.merged %>>
+<tr<%= ' class="unmerged"'.html_safe unless changeset.merged %> data-revision="<%= changeset.revision %>">
   <td class="action">
-    <button class="awesome">Edit</button>
-    <button class="awesome red">Delete</button>
+    <button class="btn-edit awesome">Edit</button>
+    <button class="btn-delete awesome red">Delete</button>
     <% if changeset.merged %>
-      <button class="awesome blue">Unmerge</button>
+      <button class="btn-merge awesome blue">Unmerge</button>
     <% else %>
-      <button class="awesome white">Merge</button>
+      <button class="btn-merge awesome white">Merge</button>
     <% end %>
   </td>
   <td class="revision"><%= changeset.revision %><a href="<%= changeset_link changeset.revision.to_s %>" target="_blank">[Trac]</a></td>
