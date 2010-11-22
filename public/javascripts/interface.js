@@ -33,7 +33,26 @@ CHANGESETS.Interface.prototype.listenClickCancel = function () {
 };
 
 CHANGESETS.Interface.prototype.listenClickEdit = function (evt, el) {
-  this.jqEditFrameRevision.text($(el).closest('tr').attr('data-revision'));
+  var jqRow = $(el).closest('tr'),
+    sRevision = jqRow.find('td.revision span').text(),
+    sTicket = jqRow.find('td.ticket span').text(),
+    sDescription = jqRow.find('td.description').text(),
+    sNotes = jqRow.find('td.notes').text();
+
+  // capture the edit frame fields the first time through
+  if (!(this.jqInpRevision || this.jqInpTicket || this.jqInpDescription || this.jqInpNotes)) {
+    this.jqInpRevision = $('#inp-revision');
+    this.jqInpTicket = $('#inp-ticket');
+    this.jqInpDescription = $('#inp-description');
+    this.jqInpNotes = $('#inp-notes');
+  }
+
+  this.jqInpRevision.val(sRevision);
+  this.jqInpTicket.val(sTicket);
+  this.jqInpDescription.val(sDescription);
+  this.jqInpNotes.val(sNotes);
+
+  this.jqEditFrameRevision.text(sRevision);
   this.jqEditFrameHeader.removeClass('new').addClass('edit');
   this.showEditFrame();
 };
