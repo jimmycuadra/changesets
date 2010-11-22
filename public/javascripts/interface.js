@@ -2,11 +2,14 @@ CHANGESETS.Interface = function () { };
 
 CHANGESETS.Interface.prototype.init = function () {
   this.jqEditFrame = $('#current-wrapper');
+  this.jqEditFrameForm = this.jqEditFrame.find('form');
+  this.jqEditFrameHeader = this.jqEditFrame.find('header');
+  this.jqEditFrameRevision = $('#edit-revision-text');
   this.jqBtnNew = $('#btn-new');
   this.jqBtnSave = $('#btn-save');
   this.jqBtnCancel = $('#btn-cancel');
 
-  // button handlers
+  // attach button handlers
   this.jqBtnNew.click(this.listenClickNew.bind(this), false);
   this.jqBtnSave.click(this.listenClickSave.bind(this), false);
   this.jqBtnCancel.click(this.listenClickCancel.bind(this), false);
@@ -17,6 +20,7 @@ CHANGESETS.Interface.prototype.init = function () {
 // button handlers
 
 CHANGESETS.Interface.prototype.listenClickNew = function () {
+  this.jqEditFrameHeader.removeClass('edit').addClass('new');
   this.showEditFrame();
 };
 
@@ -29,6 +33,8 @@ CHANGESETS.Interface.prototype.listenClickCancel = function () {
 };
 
 CHANGESETS.Interface.prototype.listenClickEdit = function (evt, el) {
+  this.jqEditFrameRevision.text($(el).closest('tr').attr('data-revision'));
+  this.jqEditFrameHeader.removeClass('new').addClass('edit');
   this.showEditFrame();
 };
 
@@ -42,5 +48,6 @@ CHANGESETS.Interface.prototype.showEditFrame = function () {
 
 CHANGESETS.Interface.prototype.hideEditFrame = function () {
   this.jqEditFrame.addClass('hidden');
+  this.jqEditFrameForm.get(0).reset();
   this.jqBtnNew.add('button.btn-edit').attr('disabled', '');
 };
