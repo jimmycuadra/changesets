@@ -1,6 +1,9 @@
 CHANGESETS.Interface = function () { };
 
 CHANGESETS.Interface.prototype.init = function () {
+  // changesets table
+  this.jqChangesets = $('#changesets');
+
   // edit frame
   this.jqEditFrame = $('#current-wrapper');
   this.jqEditFrameForm = this.jqEditFrame.find('form');
@@ -91,8 +94,8 @@ CHANGESETS.Interface.prototype.updateRecord = function (fnSuccess, fnFailure) {
 // save callbacks
 
 CHANGESETS.Interface.prototype.insertRecordInTable = function (oResponse) {
-  console.log('success', oResponse);
-  // stub
+  this.jqChangesets.prepend(oResponse.changeset);
+  this.hideEditFrame();
 };
 
 CHANGESETS.Interface.prototype.updateRecordInTable = function (oResponse) {
