@@ -39,6 +39,8 @@ CHANGESETS.Interface.prototype.listenClickEdit = function (evt, el) {
     sDescription = jqRow.find('td.description').text(),
     sNotes = jqRow.find('td.notes').text();
 
+  this.sCurrentRecordId = jqRow.attr('data-id');
+
   // capture the edit frame fields the first time through
   if (!(this.jqInpRevision || this.jqInpTicket || this.jqInpDescription || this.jqInpNotes)) {
     this.jqInpRevision = $('#inp-revision');
@@ -66,6 +68,7 @@ CHANGESETS.Interface.prototype.showEditFrame = function () {
 };
 
 CHANGESETS.Interface.prototype.hideEditFrame = function () {
+  delete this.sCurrentRecordId;
   this.jqEditFrame.addClass('hidden');
   this.jqEditFrameForm.get(0).reset();
   this.jqBtnNew.add('button.btn-edit').attr('disabled', '');
