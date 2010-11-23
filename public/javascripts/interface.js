@@ -25,7 +25,11 @@ CHANGESETS.Interface.prototype.listenClickNew = function () {
 };
 
 CHANGESETS.Interface.prototype.listenClickSave = function () {
-  this.hideEditFrame();
+  if (this.sCurrentRecordId) {
+    this.updateRecord(this.updateRecordInTable.bind(this), this.displayErrors.bind(this));
+  } else {
+    this.createRecord(this.insertRecordInTable.bind(this), this.displayErrors.bind(this));
+  }
 };
 
 CHANGESETS.Interface.prototype.listenClickCancel = function () {
@@ -57,6 +61,34 @@ CHANGESETS.Interface.prototype.listenClickEdit = function (evt, el) {
   this.jqEditFrameRevision.text(sRevision);
   this.jqEditFrameHeader.removeClass('new').addClass('edit');
   this.showEditFrame();
+};
+
+
+// ajax functions
+
+CHANGESETS.Interface.prototype.createRecord = function (fnSuccess, fnFailure) {
+  console.log('creating record');
+  // stub
+};
+
+CHANGESETS.Interface.prototype.updateRecord = function (fnSuccess, fnFailure) {
+  console.log('updating record ' + this.sCurrentRecordId);
+  // stub
+};
+
+
+// save callbacks
+
+CHANGESETS.Interface.prototype.insertRecordInTable = function () {
+  // stub
+};
+
+CHANGESETS.Interface.prototype.updateRecordInTable = function () {
+  // stub
+};
+
+CHANGESETS.Interface.prototype.displayErrors = function () {
+  // stub
 };
 
 
