@@ -3,9 +3,9 @@
     <button class="btn-edit awesome">Edit</button>
     <button class="btn-delete awesome red">Delete</button>
     <% if changeset.merged %>
-      <button class="btn-merge awesome blue">Unmerge</button>
+      <button class="btn-merge awesome">Unmerge</button>
     <% else %>
-      <button class="btn-merge awesome white">Merge</button>
+      <button class="btn-merge awesome">Merge</button>
     <% end %>
   </td>
   <td class="revision"><span><%= changeset.revision %></span><a href="<%= changeset_link changeset.revision.to_s %>" target="_blank">[Trac]</a></td>

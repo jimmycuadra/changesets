@@ -43,11 +43,13 @@ nav {
   background-color: #3acc00 !important;
 }
 
-.awesome.blue {
+.awesome.blue,
+.btn-merge {
   background-color: #4682b4 !important;
 }
 
-.awesome.white {
+.awesome.white,
+.unmerged .btn-merge {
   background-color: #fff !important;
   color: #4682b4 !important;
   text-shadow: none !important;
