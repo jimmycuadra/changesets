@@ -10,6 +10,10 @@ CHANGESETS.Interface.prototype.init = function () {
   this.jqEditFrameHeader = this.jqEditFrame.find('header');
   this.jqEditFrameRevision = $('#edit-revision-text');
 
+  // errors
+  this.jqErrorFrame = $('#errors');
+  this.jqErrors = $('#error-list');
+
   // buttons
   this.jqBtnNew = $('#btn-new');
   this.jqBtnSave = $('#btn-save');
@@ -39,7 +43,8 @@ CHANGESETS.Interface.prototype.listenClickNew = function () {
 CHANGESETS.Interface.prototype.listenClickSave = function () {
   var fnSuccess = this.sCurrentRecordId ? this.updateRecord.bind(this) : this.insertRecord.bind(this);
 
-  this.postRecord(fnSuccess, this.displayErrors.bind(this));
+  this.hideErrors();
+  this.postRecord(fnSuccess, this.showErrors.bind(this));
 };
 
 CHANGESETS.Interface.prototype.listenClickCancel = function () {
@@ -104,13 +109,17 @@ CHANGESETS.Interface.prototype.updateRecord = function (sChangeset) {
   this.hideEditFrame();
 };
 
-CHANGESETS.Interface.prototype.displayErrors = function (aErrors) {
-  console.log('failure', aErrors);
-  // stub
+CHANGESETS.Interface.prototype.showErrors = function (aErrors) {
+  this.jqErrors.html('<ul><li>' + aErrors.join('</li><li>') + '</li></ul>');
+  this.jqErrorFrame.removeClass('hidden');
 };
 
 
 // utility functions
+
+CHANGESETS.Interface.prototype.hideErrors = function () {
+  this.jqErrorFrame.addClass('hidden');
+};
 
 CHANGESETS.Interface.prototype.showEditFrame = function () {
   this.jqEditFrame.removeClass('hidden');
@@ -120,6 +129,7 @@ CHANGESETS.Interface.prototype.showEditFrame = function () {
 CHANGESETS.Interface.prototype.hideEditFrame = function () {
   delete this.sCurrentRecordId;
   this.jqEditFrame.addClass('hidden');
+  this.hideErrors();
   this.jqEditFrameForm.get(0).reset();
   this.jqBtnNew.add('button.btn-edit').attr('disabled', '');
 };

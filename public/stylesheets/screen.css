@@ -36,7 +36,7 @@ nav {
 /* awesome button colors */
 
 .awesome.red {
-  background-color: #e11 !important;
+  background-color: #a01 !important;
 }
 
 .awesome.green {
@@ -92,6 +92,20 @@ nav {
 #current .new .edit,
 #current .edit .new {
   display: none;
+}
+
+
+/* errors */
+
+#errors {
+  background-color: #9f2531;
+  color: #fff;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+#error-list ul {
+  list-style: none;
 }
 
 
