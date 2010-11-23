@@ -13,11 +13,9 @@ class ChangesetsController < ApplicationController
 
     respond_to do |format|
       if @changeset.save
-        format.html { redirect_to(changesets_url) }
         format.json
       else
-        format.html { render :action => "new" }
-        format.json
+        format.json { render :template => "changesets/errors.json.erb" }
       end
     end
   end
@@ -27,11 +25,9 @@ class ChangesetsController < ApplicationController
 
     respond_to do |format|
       if @changeset.update_attributes(params[:changeset])
-        format.html { redirect_to(changesets_url) }
-        format.json { render :action => "create" }
+        format.json { render :template => "changesets/create.json.erb" }
       else
-        format.html { render :action => "edit" }
-        format.json { render :action => "create" }
+        format.json { render :template => "changesets/errors.json.erb" }
       end
     end
   end
@@ -39,7 +35,5 @@ class ChangesetsController < ApplicationController
   def destroy
     @changeset = Changeset.find(params[:id])
     @changeset.destroy
-
-    redirect_to changesets_url
   end
 end
