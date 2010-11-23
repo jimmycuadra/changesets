@@ -31,6 +31,7 @@ CHANGESETS.Interface.prototype.init = function () {
   this.jqBtnCancel.click(this.listenClickCancel.bind(this), false);
   $('button.btn-edit').live('click', this.listenClickEdit.bind(this), false);
   $('button.btn-delete').live('click', this.listenClickDelete.bind(this), false);
+  $('button.btn-merge').live('click', this.listenClickMerge.bind(this), false);
 };
 
 
@@ -76,9 +77,26 @@ CHANGESETS.Interface.prototype.listenClickDelete = function (evt, el) {
     nID = jqRow.data('id');
 
   if (confirm('Are you sure you want to delete revision ' + nID + '?')) {
-    this.deleteRecord(jqRow.data('id'), jqRow);
+    this.deleteRecord(nID, function () {
+      jqRow.remove();
+    });
   }
 };
+
+CHANGESETS.Interface.prototype.listenClickMerge = function (evt, el) {
+  var jqEl = $(el),
+    jqRow = jqEl.closest('tr'),
+    nID = jqRow.data('id'),
+    bNewValue = jqRow.hasClass('unmerged');
+
+  this.toggleMerge(nID, bNewValue, function () {
+    var sNewButtonText = (jqEl.text() == 'Merge') ? 'Unmerge' : 'Merge';
+
+    jqRow.toggleClass('unmerged');
+    jqEl.text(sNewButtonText);
+  });
+}
+
 
 // ajax functions
 
@@ -105,13 +123,19 @@ CHANGESETS.Interface.prototype.postRecord = function (fnSuccess, fnFailure) {
   }, 'json');
 };
 
-CHANGESETS.Interface.prototype.deleteRecord = function (nID, jqRow) {
+CHANGESETS.Interface.prototype.deleteRecord = function (nID, fnSuccess) {
   $.post('/changesets/' + nID, {
     '_method': 'delete'
-  }, function (oResponse) {
-    jqRow.remove();
-  });
+  }, fnSuccess);
 };
+
+CHANGESETS.Interface.prototype.toggleMerge = function (nID, bNewValue, fnSuccess) {
+  $.post('/changesets/' + nID, {
+    '_method': 'put',
+    'changeset[merged]': bNewValue
+  }, fnSuccess);
+};
+
 
 // save callbacks
 
