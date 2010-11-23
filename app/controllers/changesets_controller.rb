@@ -35,5 +35,7 @@ class ChangesetsController < ApplicationController
   def destroy
     @changeset = Changeset.find(params[:id])
     @changeset.destroy
+
+    head :ok
   end
 end

@@ -30,6 +30,7 @@ CHANGESETS.Interface.prototype.init = function () {
   this.jqBtnSave.click(this.listenClickSave.bind(this), false);
   this.jqBtnCancel.click(this.listenClickCancel.bind(this), false);
   $('button.btn-edit').live('click', this.listenClickEdit.bind(this), false);
+  $('button.btn-delete').live('click', this.listenClickDelete.bind(this), false);
 };
 
 
@@ -70,6 +71,14 @@ CHANGESETS.Interface.prototype.listenClickEdit = function (evt, el) {
   this.showEditFrame();
 };
 
+CHANGESETS.Interface.prototype.listenClickDelete = function (evt, el) {
+  var jqRow = $(el).closest('tr'),
+    nID = jqRow.data('id');
+
+  if (confirm('Are you sure you want to delete revision ' + nID + '?')) {
+    this.deleteRecord(jqRow.data('id'), jqRow);
+  }
+};
 
 // ajax functions
 
@@ -96,6 +105,13 @@ CHANGESETS.Interface.prototype.postRecord = function (fnSuccess, fnFailure) {
   }, 'json');
 };
 
+CHANGESETS.Interface.prototype.deleteRecord = function (nID, jqRow) {
+  $.post('/changesets/' + nID, {
+    '_method': 'delete'
+  }, function (oResponse) {
+    jqRow.remove();
+  });
+};
 
 // save callbacks
 
