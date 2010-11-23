@@ -1,13 +1,22 @@
 CHANGESETS.Interface = function () { };
 
 CHANGESETS.Interface.prototype.init = function () {
+  // edit frame
   this.jqEditFrame = $('#current-wrapper');
   this.jqEditFrameForm = this.jqEditFrame.find('form');
   this.jqEditFrameHeader = this.jqEditFrame.find('header');
   this.jqEditFrameRevision = $('#edit-revision-text');
+
+  // buttons
   this.jqBtnNew = $('#btn-new');
   this.jqBtnSave = $('#btn-save');
   this.jqBtnCancel = $('#btn-cancel');
+
+  // inputs
+  this.jqInpRevision = $('#inp-revision');
+  this.jqInpTicket = $('#inp-ticket');
+  this.jqInpDescription = $('#inp-description');
+  this.jqInpNotes = $('#inp-notes');
 
   // attach button handlers
   this.jqBtnNew.click(this.listenClickNew.bind(this), false);
@@ -45,14 +54,6 @@ CHANGESETS.Interface.prototype.listenClickEdit = function (evt, el) {
 
   this.sCurrentRecordId = jqRow.attr('data-id');
 
-  // capture the edit frame fields the first time through
-  if (!(this.jqInpRevision || this.jqInpTicket || this.jqInpDescription || this.jqInpNotes)) {
-    this.jqInpRevision = $('#inp-revision');
-    this.jqInpTicket = $('#inp-ticket');
-    this.jqInpDescription = $('#inp-description');
-    this.jqInpNotes = $('#inp-notes');
-  }
-
   this.jqInpRevision.val(sRevision);
   this.jqInpTicket.val(sTicket);
   this.jqInpDescription.val(sDescription);
@@ -67,8 +68,18 @@ CHANGESETS.Interface.prototype.listenClickEdit = function (evt, el) {
 // ajax functions
 
 CHANGESETS.Interface.prototype.createRecord = function (fnSuccess, fnFailure) {
-  console.log('creating record');
-  // stub
+  $.post('/changesets', {
+   'changeset[revision]': this.jqInpRevision.val(),
+   'changeset[ticket]': this.jqInpTicket.val(),
+   'changeset[description]': this.jqInpDescription.val(),
+   'changeset[notes]': this.jqInpNotes.val(),
+  }, function (oResponse) {
+    if (oResponse.success) {
+      fnSuccess(oResponse);
+    } else {
+      fnFailure(oResponse);
+    }
+  }, 'json');
 };
 
 CHANGESETS.Interface.prototype.updateRecord = function (fnSuccess, fnFailure) {
@@ -79,15 +90,17 @@ CHANGESETS.Interface.prototype.updateRecord = function (fnSuccess, fnFailure) {
 
 // save callbacks
 
-CHANGESETS.Interface.prototype.insertRecordInTable = function () {
+CHANGESETS.Interface.prototype.insertRecordInTable = function (oResponse) {
+  console.log('success', oResponse);
   // stub
 };
 
-CHANGESETS.Interface.prototype.updateRecordInTable = function () {
+CHANGESETS.Interface.prototype.updateRecordInTable = function (oResponse) {
   // stub
 };
 
-CHANGESETS.Interface.prototype.displayErrors = function () {
+CHANGESETS.Interface.prototype.displayErrors = function (oResponse) {
+  console.log('failure', oResponse);
   // stub
 };
 

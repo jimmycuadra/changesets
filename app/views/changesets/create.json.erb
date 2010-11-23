@@ -1,0 +1,11 @@
+<% if @changeset.valid? %>
+  {
+    "success": true,
+    "changeset": "<%= escape_javascript(render :partial => 'changeset.html.erb', :locals => { :changeset => @changeset }).html_safe %>"
+  }
+<% else %>
+  {
+    "success": false,
+    "errors": <%= @changeset.errors.full_messages.to_json.html_safe %>
+  }
+<% end %>

@@ -14,10 +14,10 @@ class ChangesetsController < ApplicationController
     respond_to do |format|
       if @changeset.save
         format.html { redirect_to(changesets_url) }
-        format.js { render :template => 'changesets/create.js.erb', :status => :created }
+        format.json
       else
         format.html { render :action => "new" }
-        format.js { render :template => 'changesets/create.js.erb', :status => :unprocessable_entity }
+        format.json
       end
     end
   end
@@ -28,10 +28,10 @@ class ChangesetsController < ApplicationController
     respond_to do |format|
       if @changeset.update_attributes(params[:changeset])
         format.html { redirect_to(changesets_url) }
-        format.js { render :template => 'changesets/create.js.erb', :status => :created }
+        format.json { render :action => "create" }
       else
         format.html { render :action => "edit" }
-        format.js { render :template => 'changesets/create.js.erb', :status => :unprocessable_entity }
+        format.json { render :action => "create" }
       end
     end
   end
