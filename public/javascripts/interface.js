@@ -37,11 +37,9 @@ CHANGESETS.Interface.prototype.listenClickNew = function () {
 };
 
 CHANGESETS.Interface.prototype.listenClickSave = function () {
-  if (this.sCurrentRecordId) {
-    this.updateRecord(this.updateRecordInTable.bind(this), this.displayErrors.bind(this));
-  } else {
-    this.createRecord(this.insertRecordInTable.bind(this), this.displayErrors.bind(this));
-  }
+  var fnSuccess = this.sCurrentRecordId ? this.updateRecord.bind(this) : this.insertRecord.bind(this);
+
+  this.postRecord(fnSuccess, this.displayErrors.bind(this));
 };
 
 CHANGESETS.Interface.prototype.listenClickCancel = function () {
@@ -70,13 +68,21 @@ CHANGESETS.Interface.prototype.listenClickEdit = function (evt, el) {
 
 // ajax functions
 
-CHANGESETS.Interface.prototype.createRecord = function (fnSuccess, fnFailure) {
-  $.post('/changesets', {
-   'changeset[revision]': this.jqInpRevision.val(),
-   'changeset[ticket]': this.jqInpTicket.val(),
-   'changeset[description]': this.jqInpDescription.val(),
-   'changeset[notes]': this.jqInpNotes.val(),
-  }, function (oResponse) {
+CHANGESETS.Interface.prototype.postRecord = function (fnSuccess, fnFailure) {
+  var sURL = '/changesets',
+    oData = {
+      'changeset[revision]': this.jqInpRevision.val(),
+      'changeset[ticket]': this.jqInpTicket.val(),
+      'changeset[description]': this.jqInpDescription.val(),
+      'changeset[notes]': this.jqInpNotes.val(),
+    };
+
+  if (this.sCurrentRecordId) {
+    sURL += '/' + this.sCurrentRecordId;
+    oData['_method'] = 'put';
+  }
+
+  $.post(sURL, oData, function (oResponse) {
     if (oResponse.success) {
       fnSuccess(oResponse);
     } else {
@@ -85,20 +91,15 @@ CHANGESETS.Interface.prototype.createRecord = function (fnSuccess, fnFailure) {
   }, 'json');
 };
 
-CHANGESETS.Interface.prototype.updateRecord = function (fnSuccess, fnFailure) {
-  console.log('updating record ' + this.sCurrentRecordId);
-  // stub
-};
-
 
 // save callbacks
 
-CHANGESETS.Interface.prototype.insertRecordInTable = function (oResponse) {
+CHANGESETS.Interface.prototype.insertRecord = function (oResponse) {
   this.jqChangesets.prepend(oResponse.changeset);
   this.hideEditFrame();
 };
 
-CHANGESETS.Interface.prototype.updateRecordInTable = function (oResponse) {
+CHANGESETS.Interface.prototype.updateRecord = function (oResponse) {
   // stub
 };
 
