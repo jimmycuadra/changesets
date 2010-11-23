@@ -100,7 +100,8 @@ CHANGESETS.Interface.prototype.insertRecord = function (oResponse) {
 };
 
 CHANGESETS.Interface.prototype.updateRecord = function (oResponse) {
-  // stub
+  this.jqChangesets.find('tr[data-id=' + this.sCurrentRecordId + ']').replaceWith(oResponse.changeset);
+  this.hideEditFrame();
 };
 
 CHANGESETS.Interface.prototype.displayErrors = function (oResponse) {
