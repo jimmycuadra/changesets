@@ -84,9 +84,9 @@ CHANGESETS.Interface.prototype.postRecord = function (fnSuccess, fnFailure) {
 
   $.post(sURL, oData, function (oResponse) {
     if (oResponse.success) {
-      fnSuccess(oResponse);
+      fnSuccess(oResponse.changeset);
     } else {
-      fnFailure(oResponse);
+      fnFailure(oResponse.errors);
     }
   }, 'json');
 };
@@ -94,18 +94,18 @@ CHANGESETS.Interface.prototype.postRecord = function (fnSuccess, fnFailure) {
 
 // save callbacks
 
-CHANGESETS.Interface.prototype.insertRecord = function (oResponse) {
-  this.jqChangesets.prepend(oResponse.changeset);
+CHANGESETS.Interface.prototype.insertRecord = function (sChangeset) {
+  this.jqChangesets.prepend(sChangeset);
   this.hideEditFrame();
 };
 
-CHANGESETS.Interface.prototype.updateRecord = function (oResponse) {
-  this.jqChangesets.find('tr[data-id=' + this.sCurrentRecordId + ']').replaceWith(oResponse.changeset);
+CHANGESETS.Interface.prototype.updateRecord = function (sChangeset) {
+  this.jqChangesets.find('tr[data-id=' + this.sCurrentRecordId + ']').replaceWith(sChangeset);
   this.hideEditFrame();
 };
 
-CHANGESETS.Interface.prototype.displayErrors = function (oResponse) {
-  console.log('failure', oResponse);
+CHANGESETS.Interface.prototype.displayErrors = function (aErrors) {
+  console.log('failure', aErrors);
   // stub
 };
 
