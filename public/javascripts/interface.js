@@ -76,7 +76,7 @@ CHANGESETS.Interface.prototype.listenClickDelete = function (evt, el) {
   var jqRow = $(el).closest('tr'),
     nID = jqRow.data('id');
 
-  if (confirm('Are you sure you want to delete revision ' + nID + '?')) {
+  if (window.confirm('Are you sure you want to delete revision ' + nID + '?')) {
     this.deleteRecord(nID, function () {
       jqRow.remove();
     });
@@ -90,12 +90,12 @@ CHANGESETS.Interface.prototype.listenClickMerge = function (evt, el) {
     bNewValue = jqRow.hasClass('unmerged');
 
   this.toggleMerge(nID, bNewValue, function () {
-    var sNewButtonText = (jqEl.text() == 'Merge') ? 'Unmerge' : 'Merge';
+    var sNewButtonText = (jqEl.text() === 'Merge') ? 'Unmerge' : 'Merge';
 
     jqRow.toggleClass('unmerged');
     jqEl.text(sNewButtonText);
   });
-}
+};
 
 
 // ajax functions
@@ -106,12 +106,12 @@ CHANGESETS.Interface.prototype.postRecord = function (fnSuccess, fnFailure) {
       'changeset[revision]': this.jqInpRevision.val(),
       'changeset[ticket]': this.jqInpTicket.val(),
       'changeset[description]': this.jqInpDescription.val(),
-      'changeset[notes]': this.jqInpNotes.val(),
+      'changeset[notes]': this.jqInpNotes.val()
     };
 
   if (this.sCurrentRecordId) {
     sURL += '/' + this.sCurrentRecordId;
-    oData['_method'] = 'put';
+    oData._method = 'put';
   }
 
   $.post(sURL, oData, function (oResponse) {
