@@ -38,4 +38,33 @@ class ChangesetsControllerTest < ActionController::TestCase
     should respond_with(:success)
     should render_template(:errors)
   end
+
+  context "on valid PUT to update" do
+    setup do
+      @c = Factory.create(:changeset)
+      put :update, :format => 'json', :id => @c.to_param, :changeset => { :description => 'Updated description' }
+    end
+
+    should respond_with(:success)
+    should render_template(:create)
+  end
+
+  context "on invalid PUT to update" do
+    setup do
+      @c = Factory.create(:changeset)
+      put :update, :format => 'json', :id => @c.to_param, :changeset => { :revision => 'asdf' }
+    end
+
+    should respond_with(:success)
+    should render_template(:errors)
+  end
+
+  context "on valid DELETE to destroy" do
+    setup do
+      @c = Factory.create(:changeset)
+      delete :destroy, :id => @c.to_param
+    end
+
+    should respond_with(:success)
+  end
 end
