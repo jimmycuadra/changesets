@@ -13,23 +13,25 @@ h2. Optional Configuration
 
 Changesets has the ability to display links to an issue tracking system for each changeset. To set this up, you will need to add a few environment variables.
 
-Variable: ==ISSUE_TRACKER==
-Format: ==<path_to_changeset>/__VALUE__==
+Variable: ISSUE_TRACKER
+Format: @name@
 Description: The issue tracking system's name. This will appear as the text of the links.
 
-Variable: ==CHANGESET_URL==
-Format: ==<path_to_changeset>/__VALUE__==
+Variable: CHANGESET_URL
+Format: @path_to_changeset@/==__VALUE__==
 Description: The full URL to display a changeset.
 
-Variable: ==TICKET_URL==
-Format: ==<path_to_ticket>/__VALUE__==
+Variable: TICKET_URL
+Format: @path_to_ticket@/==__VALUE__==
 Description: The full URL to display a ticket.
 
 Here is an example of how this all might look using Apache and Passenger with Apache's SetEnv directive:
 
-bq. SetEnv ==ISSUE_TRACKER== Trac
-SetEnv ==CHANGESET_URL== ==https://trac.mysite.com/changeset/\__VALUE__==
-SetEnv ==TICKET_URL== ==https://trac.mysite.com/ticket/\__VALUE__==
+bq. SetEnv ISSUE_TRACKER Trac
+SetEnv CHANGESET_URL https://trac.mysite.com/changeset/==__VALUE__==
+SetEnv TICKET_URL https://trac.mysite.com/ticket/==__VALUE__==
+
+Note that ==__VALUE__== should be used literally. This is a token that the application will replace with the real value at runtime.
 
 h2. Feedback
 
