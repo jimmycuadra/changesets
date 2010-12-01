@@ -1,7 +1,0 @@
-# The URLs to use to link individual changesets and tickets
-# with an issue tracking system. __CHANGESET__ and __TICKET__
-# is a placeholder for where each item's unique ID will go
-# in the URL. This token will be replaced with real IDs on
-# the site.
-changeset_url: http://mywebsite.com/path/to/changeset/__CHANGESET__
-ticket_url: http://mywebsite.com/path/to/ticket/__TICKET__

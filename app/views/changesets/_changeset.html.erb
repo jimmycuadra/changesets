@@ -8,8 +8,8 @@
       <button class="btn-merge awesome">Merge</button>
     <% end %>
   </td>
-  <td class="revision"><span><%= changeset.revision %></span><a href="<%= changeset_link changeset.revision.to_s %>" target="_blank">[Trac]</a></td>
-  <td class="ticket"><span><%= changeset.ticket %><% unless changeset.ticket.blank? %></span><a href="<%= ticket_link changeset.ticket.to_s %>" target="_blank">[Trac]</a><% end %></td>
+  <td class="revision"><span><%= changeset.revision %></span><%= changeset_link(changeset) %></td>
+  <td class="ticket"><span><%= changeset.ticket %></span><%= ticket_link(changeset) unless changeset.ticket.blank? %></td>
   <td class="description"><%= changeset.description %></td>
   <td class="notes"><%= changeset.notes %></td>
 </tr>

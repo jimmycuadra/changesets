@@ -1,7 +1,5 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'yaml'
-APP_CONFIG = YAML.load(File.read(File.expand_path('../app_config.yml', __FILE__)))
 require 'rails/all'
 
 # If you have a Gemfile, require the gems listed there, including any gems
