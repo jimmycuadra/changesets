@@ -82,4 +82,15 @@ describe ChangesetsController do
       end
     end
   end
+
+  describe "#destroy" do
+    before(:each) do
+      @changeset = Factory(:changeset)
+      delete :destroy, :id => @changeset.to_param
+    end
+
+    it "destroys the changeset" do
+      Changeset.exists?(assigns(:changeset)).should_not be
+    end
+  end
 end
