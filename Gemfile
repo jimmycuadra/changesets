@@ -8,5 +8,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.5.0'
   gem 'factory_girl', '~> 1.3.3'
   gem 'ZenTest', '~> 4.4.2'
-  gem 'simplecov', '~> 0.4.0'
+  gem 'simplecov', '0.3.9'
+  gem 'simplecov-html', '0.3.9'
 end
