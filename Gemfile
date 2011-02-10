@@ -4,12 +4,9 @@ gem 'rails', '3.0.3'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'will_paginate', '3.0.pre2'
 
-group :test do
-  gem 'redgreen'
-  gem 'autotest'
-  gem 'autotest-rails-pure'
-  gem 'autotest-growl'
-  gem 'autotest-fsevent'
-  gem 'shoulda'
-  gem 'factory_girl_rails'
+group :development, :test do
+  gem 'rspec-rails', '~> 2.5.0'
+  gem 'factory_girl', '~> 1.3.3'
+  gem 'ZenTest', '~> 4.4.2'
+  gem 'simplecov', '~> 0.4.0'
 end
