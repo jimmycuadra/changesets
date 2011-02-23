@@ -6,6 +6,15 @@ h2. Setup
 
 1. Run @bundle install@ to install gem dependencies.
 2. Run @rake db:setup@ to create the database and load the schema.
+3. Add a secret token for the session in your environment with the key SECRET_TOKEN. For example, using Apache, Passenger, and the SetEnv directive:
+
+@SetEnv SECRET_TOKEN "ad0f002d37565ca7510e5ea40c1ba14b80bf8bd7678301bb2315c6715a4eb0b37cb57b44fd7185bd6eb16315d0c7f85a395e1cdfcb0a342222465305e5153e48"@
+
+It's easy to generate a token: Open up IRB and run:
+
+<pre><code>require 'active_support'
+ActiveSupport::SecureRandom.hex(64)
+</code></pre>
 
 That's all it should require. Just start up the server and get going!
 
@@ -27,14 +36,13 @@ Description: The full URL to display a ticket.
 
 Here is an example of how this all might look using Apache and Passenger with Apache's SetEnv directive:
 
-bq. SetEnv ISSUE_TRACKER Trac
+<pre><code>SetEnv ISSUE_TRACKER Trac
 SetEnv CHANGESET_URL https://trac.mysite.com/changeset/==__VALUE__==
 SetEnv TICKET_URL https://trac.mysite.com/ticket/==__VALUE__==
+</code></pre>
 
 Note that ==__VALUE__== should be used literally. This is a token that the application will replace with the real value at runtime.
 
 h2. Feedback
 
-Feedback is welcome and appreciated. You may contact me via Github or through my own website:
-
-"Jimmy Cuadra Web Services":http://www.jimmycuadra.com/
+Feedback is welcome and appreciated. You may contact me via Github or through my "own website":http://jimmycuadra.com/.
