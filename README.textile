@@ -37,8 +37,8 @@ Description: The full URL to display a ticket.
 Here is an example of how this all might look using Apache and Passenger with Apache's SetEnv directive:
 
 <pre><code>SetEnv ISSUE_TRACKER Trac
-SetEnv CHANGESET_URL https://trac.mysite.com/changeset/==__VALUE__==
-SetEnv TICKET_URL https://trac.mysite.com/ticket/==__VALUE__==
+SetEnv CHANGESET_URL https://trac.mysite.com/changeset/__VALUE__
+SetEnv TICKET_URL https://trac.mysite.com/ticket/__VALUE__
 </code></pre>
 
 Note that ==__VALUE__== should be used literally. This is a token that the application will replace with the real value at runtime.
